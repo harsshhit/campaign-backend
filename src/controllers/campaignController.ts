@@ -4,8 +4,10 @@ import mongoose from "mongoose";
 
 export const getCampaigns = async (req: Request, res: Response) => {
   try {
-    // Filter out deleted campaigns
-    const campaigns = await Campaign.find({ status: { $ne: "deleted" } });
+    // Only return ACTIVE and INACTIVE campaigns
+    const campaigns = await Campaign.find({
+      status: { $in: ["active", "inactive"] }
+    });
     res.json(campaigns);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });

@@ -14,11 +14,15 @@ connectDB();
 
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://outflo-ai.vercel.app', 'https://outfloai.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: [
+    "http://localhost:3000",
+    "https://outflo-ai.vercel.app",
+    "https://outfloai.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 
 // Middleware
@@ -39,10 +43,17 @@ app.get("/", (req, res) => {
 });
 
 // Error handling middleware
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
-});
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.error(err.stack);
+    res.status(500).json({ error: "Something went wrong!" });
+  }
+);
 
 // Start server
 app.listen(port, () => {
