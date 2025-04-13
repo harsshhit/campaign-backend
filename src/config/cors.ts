@@ -1,10 +1,10 @@
-import { CorsOptions } from 'cors';
-
-const corsOptions: CorsOptions = {
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://outflo.vercel.app', 'https://www.outflo.app'] // Add your production frontend URLs
+    : ['http://localhost:5173', 'http://localhost:3000'], // Development URLs
   credentials: true,
-  optionsSuccessStatus: 200
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 export default corsOptions;

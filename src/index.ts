@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));  // This is correctly placed before routes
 app.use(express.json());
 
 // Connect to MongoDB
