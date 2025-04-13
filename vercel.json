@@ -2,24 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/index.js",
+      "src": "index.ts",
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/dist/index.js"
+      "src": "/(.*)",
+      "dest": "index.ts"
     }
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        },
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
