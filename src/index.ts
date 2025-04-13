@@ -4,13 +4,14 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/database";
 import campaignRoutes from "./routes/campaignRoutes";
 import accountRoutes from "./routes/accountRoutes";
+import corsOptions from './config/cors';
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -43,7 +44,7 @@ export default app;
 
 // Only listen if we're running directly (not through Vercel)
 if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
